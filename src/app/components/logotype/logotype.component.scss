@@ -1,0 +1,23 @@
+#albertAnim,
+#cliffAnim,
+#elemBottomOneAnim,
+#elemBottomTwoAnim,
+#elemMiddleAnim,
+#elemTopAnim,
+#londonAnim {
+  display: none;
+}
+.texts {
+  position: relative;
+  overflow: hidden;
+  height: 35px;
+  display: block;
+}
+.logotype {
+  display: inline-block;
+  position: relative;
+  margin: 40px 0 20px 40px;
+  z-index: 3;
+  overflow: hidden;
+}
+

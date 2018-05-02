@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'DeeDeeHeavy';
+  src: url('./../../../assets/fonts/DeeDee-Heavy.ttf');
+}
+.text-container {
+  position: relative;
+  text-align: left;
+  z-index: 3;
+  margin: 100px 0 0 90px;
+  &__title {
+    position: relative;
+    z-index: 2;
+    font-family: 'DeeDeeHeavy', sans-serif;
+    font-size: 70px;
+    margin: 0;
+    color: #C8102E;
+    clip-path: inset(0px 0px 100% 1px);
+  }
+  &__text {
+    font-size: 30px;
+    position: relative;
+    color: #000;
+    clip-path: inset(0px 0px 100% 1px);
+  }
+}

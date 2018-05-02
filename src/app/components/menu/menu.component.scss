@@ -1,0 +1,32 @@
+.menu-wrap {
+  float: right;
+  //display: none;
+  margin: 40px 40px 0 0;
+  padding: 10px 10px 14px 10px;
+  //position: relative;
+  z-index: 3;
+  position: relative;
+  //opacity: 0;
+  &__border {
+    fill: none;
+    stroke: #C8102E;
+    stroke-width: 3px;
+    x: -8;
+    y: -8;
+    width: 36px;
+    height: 34px;
+  }
+  &__fill {
+    fill: #C8102E;
+    //stroke: #C8102E;
+    //stroke-width: 3px;
+    x: -8;
+    y: -8;
+    width: 36px;
+    height: 34px;
+  }
+}
+#cover {
+  position: absolute;
+}
+
