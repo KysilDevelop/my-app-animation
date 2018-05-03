@@ -1,4 +1,5 @@
-import { Component, HostListener, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, HostListener, ElementRef, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+// import { trigger, style, transition, animate, group } from '@angular/animations';
 import { TimelineMax, TweenLite, TimelineLite } from 'gsap';
 
 @Component({
@@ -7,75 +8,122 @@ import { TimelineMax, TweenLite, TimelineLite } from 'gsap';
     styleUrls: [ './masks.component.scss' ]
 })
 
-export class MasksComponent implements AfterViewInit {
+export class MasksComponent implements AfterViewInit, OnInit {
     constructor() {  }
+    height: number;
+    width: number;
+
+    maskOneX: number;
+    maskTwoX: number;
+    maskThreeX: number;
+
+    maskOneY: number;
+    maskTwoY: number;
+    maskThreeY: number;
+
+    firstMask: number;
+    secondMask: number;
+    thirdMask: number;
     @HostListener('document:mousemove', ['$event'])
-    startAnimation() {
-        const t4 = new TimelineLite();
-        const container = document.getElementById('content');
-        const video = document.getElementById('video');
-        const v1 = document.getElementById('video1');
-        const v2 = document.getElementById('video2');
-        const v3 = document.getElementById('video3');
-        // this.startAnimation(t4, container, v1, v2, v3);
-        // t4.staggerFrom([v3, v2, v1], 3, {right: -1300}, 0.3, 'stagger').repeatDelay(15).repeat(-1);
-        t4.staggerFrom([v3, v2, v1], 3, {right: -1300}, 0.3, 'stagger')
-            .to(video, 0, {
-                top: 0,
-                bottom: 0,
-                right: 0,
-                display: 'block',
-                width: '100%',
-                height: '100%'
-            });
-    }
-    loadMask() {
-        /*const t4 = new TimelineMax();
-        const container = document.getElementById('content');
-        const v1 = document.getElementById('video1');
-        const v2 = document.getElementById('video2');
-        const v3 = document.getElementById('video3');
-        this.startAnimation(t4, container, v1, v2, v3);
-        t4.staggerFrom([v3, v2, v1], 3, {right: -1300}, 0.3, 'stagger').repeatDelay(15).repeat(-1);*/
-    }
+
     ngAfterViewInit() {
-       /* const t4 = new TimelineMax();
-        const video = document.getElementById('video');
-        t4.to(video, 1, {
-            top: 0,
-            bottom: 0,
-            right: 0,
-            display: 'block',
-            width: '100%',
-            height: '100%'
-        });*/
-        this.startAnimation();
+       /* const v1 = document.getElementById('video1');
+        const v2 = document.getElementById('video2');
+        const v3 = document.getElementById('video3');
+        const myClip = document.getElementById('masks');
+        this.maskOneX = this.width;
+        this.maskTwoX = this.width;
+        this.maskThreeX = this.width;
+        const a1 = new TimelineMax();
+        a1.staggerTo(v1, 2, {x:'100'}, 2);*/
+        console.log('onInit View');
+    }
+    ngOnInit() {
+        this.showVideo();
+
     }
     moveCircle(e) {
         const v1 = document.getElementById('video1');
         const v2 = document.getElementById('video2');
         const v3 = document.getElementById('video3');
-        TweenLite.to(v1, 4, {
-            css: {
-                left: e.pageX,
-                float: 'none',
-                right: 'auto'
-            }
-        });
-        TweenLite.to(v2, 8, {
-            css: {
-                left: e.pageX,
-                float: 'none',
-                right: 'auto'
-            }
-        });
-        TweenLite.to(v3, 16, {
-            css: {
-                left: e.pageX,
-                float: 'none',
-                right: 'auto'
-            }
-        });
+        this.maskOneX = e.pageX - (this.firstMask / 2);
+        this.maskTwoX = e.pageX - (this.secondMask / 2);
+        this.maskThreeX = e.pageX - (this.thirdMask /2);
+
+        if (this.maskOneX > 0) {
+
+        } else {
+            this.maskOneX = 0;
+            this.maskTwoX = 0;
+            this.maskThreeX = 0;
+        }
+
+        setTimeout(() => {
+            TweenLite.to(v1, 2, {
+                css: {
+                    x: this.maskOneX,
+                    // float: 'none',
+                    // right: '0'
+                }
+            });
+            TweenLite.to(v2, 3, {
+                css: {
+                    x: this.maskTwoX,
+                    // float: 'none',
+                    // right: '0'
+                }
+            });
+            TweenLite.to(v3, 4, {
+                css: {
+                    x: this.maskThreeX,
+                    float: 'none',
+                    right: '0'
+                }});
+        }, 4000);
+    }
+    /*myHandler() {
+        this.nextVideo();
+    }*/
+    showVideo() {
+        this.height = window.innerHeight / 3;
+        this.width = window.innerWidth;
+
+        this.maskOneY = 0;
+        this.maskTwoY = this.height + 10;
+        this.maskThreeY = (this.height * 2) + 30;
+
+        this.firstMask = this.width / 4;
+        this.secondMask = this.width / 2;
+        this.thirdMask = this.firstMask + this.secondMask;
+
+        const v1 = document.getElementById('video1');
+        const v2 = document.getElementById('video2');
+        const v3 = document.getElementById('video3');
+
+        TweenLite.from(v1, 1, {x: this.width});
+        TweenLite.to(v1, 2, {x: this.width - this.firstMask});
+        TweenLite.from(v2, 1, {x: this.width});
+        TweenLite.to(v2, 2, {x: this.width - this.secondMask});
+        TweenLite.from(v3, 1, {x: this.width});
+        TweenLite.to(v3, 2, {x: this.width - this.thirdMask});
+          setTimeout(() => {
+              this.nextVideo();
+              // e.preventDefault();
+        }, 10000);
+    }
+    nextVideo() {
+        const v1 = document.getElementById('video1');
+        const v2 = document.getElementById('video2');
+        const v3 = document.getElementById('video3');
+        TweenLite.to(v1, 2, {x: -this.firstMask});
+        TweenLite.to(v2, 3, {x: -this.secondMask});
+        TweenLite.to(v3, 4, {x: -this.thirdMask});
+        // e.preventDefault();
+
+          setTimeout(() => {
+            this.showVideo();
+        }, 4000);
+        // e.stopPropagation();
     }
     onMouseMove(e) {
         this.moveCircle(e);

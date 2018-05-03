@@ -1,14 +1,19 @@
-﻿<div id="content">
-    <div class="wraws">
-        <video width="100%" height="auto" preload="auto" autoplay="autoplay"
-                loop="loop" poster="./../../../assets/video/bg/daisy-stock-poster.jpg">
+﻿<div id="content" class="drag-mask">
+    <!--<div id="video" (document:mousemove)="onMouseMove($event)">-->
+    <div id="video">
+        <video id="videos" class="drag-mask__video" width="100%" height="auto" loop autoplay
+               poster="./../../../assets/video/bg/daisy-stock-poster.jpg">
             <source src="./../../../assets/video/bg/daisy-stock-h264-video.mp4" type="video/mp4">
             <source src="./../../../assets/video/bg/daisy-stock-webm-video.webm" type="video/webm">
         </video>
-        <div id="video" class="video video__bg">
-            <div (document:mousemove)="onMouseMove($event)" id="video1" class="mask mask--w30"></div>
-            <div (document:mousemove)="onMouseMove($event)" id="video2" class="mask mask--w50"></div>
-            <div (document:mousemove)="onMouseMove($event)" id="video3" class="mask mask--w80"></div>
-        </div>
+        <svg width="0" height="0" id="masks" >
+            <defs>
+                <clipPath id="myClip">
+                    <rect id="video1" class="videoMask" [ngStyle]="{'y': maskOneY}" [style.width.px]="firstMask" [style.height.px]="height" />
+                    <rect id="video2" class="videoMask" [ngStyle]="{'y': maskTwoY}" [style.width.px]="secondMask" [style.height.px]="height" />
+                    <rect id="video3" class="videoMask" [ngStyle]="{'y': maskThreeY}" [style.width.px]="thirdMask" [style.height.px]="height" />
+                </clipPath>
+            </defs>
+        </svg>
     </div>
 </div>

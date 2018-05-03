@@ -26,9 +26,7 @@ export class MenuComponent implements OnInit {
             .to(menu, 1, {transformOrigin: 'left'}, 'reveal');
     }
     ngOnInit() {
-             setTimeout(() => {
-                this.loadMenu();
-            }, 0);
+        this.loadMenu();
         // this.loadMenu();
     }
 

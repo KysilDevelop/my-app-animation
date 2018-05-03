@@ -1,81 +1,10 @@
-#content {
-  position: absolute;
+.drag-mask {
+  position: fixed;
   top: 0;
   z-index: 2;
-  //padding-left: 15px;
   width: 100%;
-  //float: right;
-  //visibility: hidden;
-}
-.mask {
-  position: relative;
-  float: right;
-  font-size: 16px;
-  line-height: 24px;
-  width: 20%;
-  height: 30%;
-  margin: 10px 0 10px 20px;
-  clear: both;
-  z-index: 2;
-  border: 1px solid blue;
-  &__image {
-    width: 100%;
-    height: 100%;
-  }
-  &--w30 {
-    width: 30%;
- /*   video {
-      position: fixed;
-      left: 0;
-      overflow: hidden;
-      clip-path: inset(0px 0px 569px 850px);
-    }*/
-  }
-  &--w50 {
-    width: 50%;
-  }
-  &--w80 {
-    width: 80%;
-  }
-}
-#videoBg {
-  background: gray;
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: auto;
-
-  }
-}
-.video {
-  //display: none;
-  &__bg {
-    position: fixed;
-    width: 0;
-    height: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    z-index: 1;
-    //-webkit-mask-box-image: url(./../../../assets/elements/rectangle.svg);
-    background-size: cover;
-    margin: 0;
-    &> video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      width: auto;
-      height: auto;
-    }
+  &__video {
+    clip-path: url(#myClip);
   }
 }
 @supports (object-fit: cover) {

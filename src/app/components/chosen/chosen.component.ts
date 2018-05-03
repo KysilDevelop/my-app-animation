@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, Input} from '@angular/core';
 import { TimelineMax,  Linear } from 'gsap';
+import { MasksComponent } from './../masks/masks.component';
 
 @Component({
     selector: 'app-chosen',
@@ -20,5 +21,9 @@ export class ChosenComponent implements AfterViewInit {
             .to(cover, 1, {scaleX: 0, transformOrigin: 'left'}, 'reveal')
             .from(chosenBtn, 1, {transformOrigin: 'left', display: 'block'})
             .to(chosenBtn, 1, {transformOrigin: 'left'}, 'reveal');
+    }
+    nextVideo() {
+        MasksComponent.prototype.nextVideo();
+        console.log('next');
     }
 }
